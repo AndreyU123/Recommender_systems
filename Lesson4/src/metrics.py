@@ -19,11 +19,16 @@ def money_precision_at_k(recommended_list, bought_list, prices_recommended, k=5)
     recommended_list = np.array(recommended_list)
 
     bought_list = bought_list  # Тут нет [:k] !!
-    recommended_list = recommended_list[:k]
+
+    if k < len(recommended_list):
+        recommended_list = recommended_list[:k]
 
     flags = np.isin(recommended_list, bought_list)
 
-    prices_recommended_arr = np.array(prices_recommended[:k])
+    if k < len(prices_recommended):
+        prices_recommended = prices_recommended[:k]
+
+    prices_recommended_arr = np.array(prices_recommended)
 
     money_precision = prices_recommended_arr[flags].sum() / prices_recommended_arr.sum()
 
@@ -34,7 +39,8 @@ def recall_at_k(recommended_list, bought_list, k=5):
     bought_list = np.array(bought_list)
     recommended_list = np.array(recommended_list)
 
-    recommended_list = recommended_list[:k]
+    if k < len(recommended_list):
+        recommended_list = recommended_list[:k]
 
     flags = np.isin(bought_list, recommended_list)
 
@@ -47,11 +53,15 @@ def money_recall_at_k(recommended_list, bought_list, prices_recommended, prices_
     bought_list = np.array(bought_list)
     recommended_list = np.array(recommended_list)
 
-    recommended_list = recommended_list[:k]
+    if k < len(recommended_list):
+        recommended_list = recommended_list[:k]
 
     flags = np.isin(recommended_list, bought_list)
 
-    prices_recommended_arr = np.array(prices_recommended[:k])
+    if k < len(prices_recommended):
+        prices_recommended=prices_recommended[:k]
+
+    prices_recommended_arr = np.array(prices_recommended)
     prices_bought_arr = np.array(prices_bought)
 
     money_precision = prices_recommended_arr[flags].sum() / prices_bought_arr.sum()
@@ -64,7 +74,9 @@ def precision_at_k(recommended_list, bought_list, k=5):
     recommended_list = np.array(recommended_list)
 
     bought_list = bought_list  # Тут нет [:k] !!
-    recommended_list = recommended_list[:k]
+
+    if k < len(recommended_list):
+        recommended_list = recommended_list[:k]
 
     flags = np.isin(bought_list, recommended_list)
 
